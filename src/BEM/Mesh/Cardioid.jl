@@ -1,12 +1,12 @@
+module Cardioid
+
 using LinearAlgebra
 using SpecialFunctions   # For Hankel functions
 
-
-module Cardioid
+# Boundary parameterization for the cardioid 
 
 export cardioid_boundary
 
-# -- Boundary parameterization for the cardioid --
 function cardioid_boundary(θ)
     r = 1 + cos(θ)
     return [r * cos(θ), r * sin(θ)]

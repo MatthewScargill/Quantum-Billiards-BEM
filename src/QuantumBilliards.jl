@@ -18,7 +18,7 @@ include("Spectral/WDStats.jl")
 # --- Visualisation ---
 
 # Bring submodules into scope so users can access them
-using .Mesh, .Kernels, .Assembly, .Solvers, .Resonances
+using .Cardioid, .Kernels, .Assembly, .Solvers, .Resonances
 using .Unfolding, .WDStats, .GoodnessOfFit
 using .Fields, .SpectraPlots
 

@@ -1,6 +1,9 @@
+module GreenKernel
+
 using LinearAlgebra
 using SpecialFunctions   # for Hankel functions
 
+export kernel_bem
 # 2D Helmholtz Green's function 
 # Returns the kernel value for field point x and boundary point y with normal n.
 function kernel_bem(x::Vector{Float64}, y::Vector{Float64}, n::Vector{Float64}, k::Float64)
@@ -12,3 +15,5 @@ function kernel_bem(x::Vector{Float64}, y::Vector{Float64}, n::Vector{Float64}, 
         return (im * k / 4) * besselh(1, 1, k*d) * dot(x - y, n) / d
     end
 end
+
+end # of the module
