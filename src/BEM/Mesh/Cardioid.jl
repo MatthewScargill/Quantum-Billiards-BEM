@@ -1,19 +1,11 @@
-module Cardioid
-
 using LinearAlgebra
 using SpecialFunctions   # For Hankel functions
 
 # Boundary parameterization for the cardioid 
-
-export cardioid_boundary
-
 function cardioid_boundary(θ)
     r = 1 + cos(θ)
     return [r * cos(θ), r * sin(θ)]
 end
-
-
-export cardioid_derivative
 
 function cardioid_derivative(θ)
     r = 1 + cos(θ)
@@ -23,16 +15,11 @@ function cardioid_derivative(θ)
     return [dx, dy]
 end
 
-
-export cardioid_outward_normal
-
 function cardioid_outward_normal(θ)
     d = cardioid_derivative(θ)
     n = [d[2], -d[1]]
     return n / norm(n)
 end
-
-export cardioid_quadrature_weights
 
 function cardioid_quadrature_weights(θs)
     N = length(θs)
@@ -44,9 +31,6 @@ function cardioid_quadrature_weights(θs)
     return w
 end
 
-
-export cardioid_info
-
 function cardioid_info( N::Int)
     θs = range(2π, 4π, length=N+1)[1:end-1]  # exclude duplicate endpoint
     xs = [cardioid_boundary(θ) for θ in θs]
@@ -54,5 +38,3 @@ function cardioid_info( N::Int)
     w = cardioid_quadrature_weights(collect(θs))
     return θs, xs, ns, w
 end
-
-end # of the module

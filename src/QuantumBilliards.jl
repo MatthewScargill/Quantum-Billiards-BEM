@@ -21,10 +21,6 @@ include("Visualisation/ResVis.jl")
 include("Visualisation/WDStatsvis.jl")
 
 
-# Bring submodules into scope 
-using .Cardioid, .Circle, .Rectangle, .Square
-using .GreenKernel, .Matrix, .Resonances
-using .Unfolding, .WDStats
-using .BilliardVis, .ResVis, .WDStatsvis
-
+export cardioid_info, circle_info, rect_info, square_info
+export kernel_bem
 end

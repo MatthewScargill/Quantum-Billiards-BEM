@@ -1,5 +1,3 @@
-module Rectangle
-
 using LinearAlgebra
 using SpecialFunctions   # for Hankel functions
 
@@ -7,9 +5,6 @@ using SpecialFunctions   # for Hankel functions
 const Lx = 1.0
 const Ly = sqrt(2)
 const L_total = 2*(Lx + Ly)  # total boundary length
-
-
-export rect_boundary
 
 function rect_boundary(s::Float64)
     if s < Lx
@@ -30,9 +25,6 @@ function rect_boundary(s::Float64)
     end
 end
 
-
-export rect_derivative
-
 function rect_derivative(s::Float64)
     if s < Lx
         return [1.0, 0.0]   # bottom edge
@@ -44,9 +36,6 @@ function rect_derivative(s::Float64)
         return [0.0, -1.0]  # left edge
     end
 end
-
-
-export rect_outward_normal
 
 function rect_outward_normal(s::Float64)
     if s < Lx
@@ -60,16 +49,11 @@ function rect_outward_normal(s::Float64)
     end
 end
 
-export rect_quadrature_weights
-
 function rect_quadrature_weights(s_vals)
     N = length(s_vals)
     ds = L_total / N
     return fill(ds, N)
 end
-
-
-export rect_info
 
 function rect_info( N::Int)
     s_vals = collect(range(0, stop=L_total, length=N+1))[1:end-1]  # avoid duplicating endpoint
@@ -78,5 +62,3 @@ function rect_info( N::Int)
     w = rect_quadrature_weights(s_vals)
     return s_vals, xs, ns, w
 end
-
-end # of the module
