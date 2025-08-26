@@ -8,6 +8,7 @@ const Lx = 1.0
 const Ly = sqrt(2)
 const L_total = 2*(Lx + Ly)  # total boundary length
 
+
 export rect_boundary
 
 function rect_boundary(s::Float64)
@@ -29,6 +30,7 @@ function rect_boundary(s::Float64)
     end
 end
 
+
 export rect_derivative
 
 function rect_derivative(s::Float64)
@@ -42,6 +44,7 @@ function rect_derivative(s::Float64)
         return [0.0, -1.0]  # left edge
     end
 end
+
 
 export rect_outward_normal
 
@@ -64,6 +67,7 @@ function rect_quadrature_weights(s_vals)
     ds = L_total / N
     return fill(ds, N)
 end
+
 
 export rect_info
 

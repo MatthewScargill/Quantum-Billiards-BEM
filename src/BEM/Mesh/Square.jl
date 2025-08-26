@@ -8,6 +8,7 @@ const Lx = 1.0
 const Ly = 1.0
 const L_total = 2*(Lx + Ly)  # total boundary length
 
+
 export square_boundary
 
 function square_boundary(s::Float64)
@@ -29,6 +30,7 @@ function square_boundary(s::Float64)
     end
 end
 
+
 export square_derivative
 
 function square_derivative(s::Float64)
@@ -42,6 +44,7 @@ function square_derivative(s::Float64)
         return [0.0, -1.0]  # left edge
     end
 end
+
 
 export square_outward_normal
 
@@ -57,6 +60,7 @@ function square_outward_normal(s::Float64)
     end
 end
 
+
 export square_quadrature_weights
 
 function square_quadrature_weights(s_vals)
@@ -64,6 +68,7 @@ function square_quadrature_weights(s_vals)
     ds = L_total / N
     return fill(ds, N)
 end
+
 
 export square_info
 

@@ -12,6 +12,7 @@ function cardioid_boundary(θ)
     return [r * cos(θ), r * sin(θ)]
 end
 
+
 export cardioid_derivative
 
 function cardioid_derivative(θ)
@@ -21,6 +22,7 @@ function cardioid_derivative(θ)
     dy = rp*sin(θ) + r*cos(θ)
     return [dx, dy]
 end
+
 
 export cardioid_outward_normal
 
@@ -41,6 +43,7 @@ function cardioid_quadrature_weights(θs)
     end
     return w
 end
+
 
 export cardioid_info
 

@@ -1,25 +1,30 @@
 module QuantumBilliards
 
-# BEM functions
+# Mesh files
 include("BEM/Mesh/Cardioid.jl")
 include("BEM/Mesh/Circle.jl")
 include("BEM/Mesh/Rectangle.jl")
 include("BEM/Mesh/Square.jl")
 
+# BEM functions
 include("BEM/GreenKernel.jl")
 include("BEM/Matrix.jl")
 include("BEM/Resonances.jl")
 
-
-# FredholmComp functions
+# Spectral functions
 include("Spectral/Unfolding.jl")
 include("Spectral/WDStats.jl")
 
-# --- Visualisation ---
+# Visualisation functions
+include("Visualisation/BilliardVis.jl")
+include("Visualisation/ResVis.jl")
+include("Visualisation/WDStatsvis.jl")
 
-# Bring submodules into scope so users can access them
-using .Cardioid, .Kernels, .Assembly, .Solvers, .Resonances
-using .Unfolding, .WDStats, .GoodnessOfFit
-using .Fields, .SpectraPlots
+
+# Bring submodules into scope 
+using .Cardioid, .Circle, .Rectangle, .Square
+using .GreenKernel, .Matrix, .Resonances
+using .Unfolding, .WDStats
+using .BilliardVis, .ResVis, .WDStatsvis
 
 end
