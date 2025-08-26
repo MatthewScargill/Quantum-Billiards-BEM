@@ -2,9 +2,9 @@ using LinearAlgebra
 using SpecialFunctions   # for Hankel functions
 
 # Boundary parameterization for the square with Lx = 1 and Ly = 1.
-const Lx = 1.0
-const Ly = 1.0
-const L_total = 2*(Lx + Ly)  # total boundary length
+Lx = 1.0
+Ly = 1.0
+L_total = 2*(Lx + Ly)  # total boundary length
 
 function square_boundary(s::Float64)
     if s < Lx
@@ -60,5 +60,5 @@ function square_info( N::Int)
     xs = [square_boundary(s) for s in s_vals]
     ns = [square_outward_normal(s) for s in s_vals]
     w = square_quadrature_weights(s_vals)
-    return s_vals, xs, ns, w
+    return xs, ns, w
 end

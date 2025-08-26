@@ -2,9 +2,9 @@ using LinearAlgebra
 using SpecialFunctions   # for Hankel functions
 
 # Boundary parameterization for the rectangle with Lx = 1 and Ly = sqrt(2).
-const Lx = 1.0
-const Ly = sqrt(2)
-const L_total = 2*(Lx + Ly)  # total boundary length
+Lx = 1.0
+Ly = sqrt(2)
+L_total = 2*(Lx + Ly)  # total boundary length
 
 function rect_boundary(s::Float64)
     if s < Lx
@@ -60,5 +60,5 @@ function rect_info( N::Int)
     xs = [rect_boundary(s) for s in s_vals]
     ns = [rect_outward_normal(s) for s in s_vals]
     w = rect_quadrature_weights(s_vals)
-    return s_vals, xs, ns, w
+    return xs, ns, w
 end

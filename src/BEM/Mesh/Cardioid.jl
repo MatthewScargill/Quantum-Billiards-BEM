@@ -21,20 +21,20 @@ function cardioid_outward_normal(θ)
     return n / norm(n)
 end
 
-function cardioid_quadrature_weights(θs)
-    N = length(θs)
+function cardioid_quadrature_weights(rng)
+    N = length(rng)
     w = zeros(Float64, N)
-    dθ = θs[2] - θs[1]
-    for (i, θ) in enumerate(θs)
-        w[i] = norm(cardioid_derivative(θ)) * dθ
+    drng = rng[2] - rng[1]
+    for (i, θ) in enumerate(rng)
+        w[i] = norm(cardioid_derivative(θ)) * drng
     end
     return w
 end
 
 function cardioid_info( N::Int)
-    θs = range(2π, 4π, length=N+1)[1:end-1]  # exclude duplicate endpoint
-    xs = [cardioid_boundary(θ) for θ in θs]
-    ns = [cardioid_outward_normal(θ) for θ in θs]
-    w = cardioid_quadrature_weights(collect(θs))
-    return θs, xs, ns, w
+    rng = range(2π, 4π, length=N+1)[1:end-1]  # exclude duplicate endpoint
+    xs = [cardioid_boundary(θ) for θ in rng]
+    ns = [cardioid_outward_normal(θ) for θ in rng]
+    w = cardioid_quadrature_weights(collect(rng))
+    return xs, ns, w
 end
