@@ -22,6 +22,6 @@ include("Visualisation/WDStatsvis.jl")
 
 
 export cardioid_info, circle_info, rect_info, square_info
-export kernel_bem, resonant_modes
+export kernel_bem, build_BEM_matrix, resonant_modes
 
 end
