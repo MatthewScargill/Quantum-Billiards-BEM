@@ -57,12 +57,22 @@ function rect_outward_normal(s::Float64)
     end
 end
 
-export quadrature_weights_rect
+export rect_quadrature_weights
 
-function quadrature_weights_rect(s_vals)
+function rect_quadrature_weights(s_vals)
     N = length(s_vals)
     ds = L_total / N
     return fill(ds, N)
+end
+
+export rect_info
+
+function rect_info( N::Int)
+    s_vals = collect(range(0, stop=L_total, length=N+1))[1:end-1]  # avoid duplicating endpoint
+    xs = [rect_boundary(s) for s in s_vals]
+    ns = [rect_outward_normal(s) for s in s_vals]
+    w = rect_quadrature_weights(s_vals)
+    return s_vals, xs, ns, w
 end
 
 end # of the module

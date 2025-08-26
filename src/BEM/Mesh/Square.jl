@@ -3,7 +3,7 @@ module Square
 using LinearAlgebra
 using SpecialFunctions   # for Hankel functions
 
-# Boundary parameterization for the square with Lx = 1.0 and Ly = 1.0
+# Boundary parameterization for the square with Lx = 1 and Ly = 1.
 const Lx = 1.0
 const Ly = 1.0
 const L_total = 2*(Lx + Ly)  # total boundary length
@@ -57,12 +57,22 @@ function square_outward_normal(s::Float64)
     end
 end
 
-export quadrature_weights_square
+export square_quadrature_weights
 
-function quadrature_weights_square(s_vals)
+function square_quadrature_weights(s_vals)
     N = length(s_vals)
     ds = L_total / N
     return fill(ds, N)
+end
+
+export square_info
+
+function square_info( N::Int)
+    s_vals = collect(range(0, stop=L_total, length=N+1))[1:end-1]  # avoid duplicating endpoint
+    xs = [square_boundary(s) for s in s_vals]
+    ns = [square_outward_normal(s) for s in s_vals]
+    w = square_quadrature_weights(s_vals)
+    return s_vals, xs, ns, w
 end
 
 end # of the module
