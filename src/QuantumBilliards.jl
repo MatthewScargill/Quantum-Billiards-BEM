@@ -10,20 +10,21 @@ include("BEM/Mesh/Square.jl")
 include("BEM/GreenKernel.jl")
 include("BEM/Matrix.jl")
 include("BEM/Resonances.jl")
+include("BEM/Solver.jl")
 
 # Spectral functions
 include("Spectral/Unfolding.jl")
 include("Spectral/WDStats.jl")
 
 # Visualisation functions
-include("Visualisation/boundaryVis.jl")
-#include("Visualisation/BilliardVis.jl")
+include("Visualisation/BoundaryVis.jl")
+include("Visualisation/BilliardVis.jl")
 include("Visualisation/ResVis.jl")
 include("Visualisation/WDStatsvis.jl")
 
 
 export cardioid_info, circle_info, rect_info, square_info
 export kernel_bem, build_BEM_matrix, resonant_modes
-export plot_boundary
+export plot_boundary, plot_billiard
 
 end

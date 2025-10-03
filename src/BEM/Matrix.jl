@@ -1,6 +1,6 @@
 using .QuantumBilliards
 
-function build_BEM_matrix_midpoint(k::Float64, xs, ns, w; interior::Bool=true)
+function build_BEM_matrix(k::Float64, xs, ns, w; interior::Bool=true)
     N = length(xs)
     A = zeros(ComplexF64, N, N)
     jump = interior ? -0.5 : 0.5

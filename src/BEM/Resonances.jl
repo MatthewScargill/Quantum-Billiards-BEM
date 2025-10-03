@@ -2,7 +2,6 @@ using LinearAlgebra
 using SpecialFunctions
 using .QuantumBilliards
 
-# --- Compute the Minimum Singular Value (for resonance detection) ---
 function min_singular_value(k::Float64, xs, ns, w)
     A = QuantumBilliards.build_BEM_matrix_midpoint(k, xs, ns, w; interior=true)
     s = svdvals(A)
