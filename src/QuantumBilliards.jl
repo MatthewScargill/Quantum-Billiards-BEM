@@ -16,12 +16,14 @@ include("Spectral/Unfolding.jl")
 include("Spectral/WDStats.jl")
 
 # Visualisation functions
-include("Visualisation/BilliardVis.jl")
+include("Visualisation/boundaryVis.jl")
+#include("Visualisation/BilliardVis.jl")
 include("Visualisation/ResVis.jl")
 include("Visualisation/WDStatsvis.jl")
 
 
 export cardioid_info, circle_info, rect_info, square_info
 export kernel_bem, build_BEM_matrix, resonant_modes
+export plot_boundary
 
 end

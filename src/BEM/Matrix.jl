@@ -1,11 +1,18 @@
 using .QuantumBilliards
 
-function build_BEM_matrix(k::Float64, N::Int, xs, ns, w)
-    
+function build_BEM_matrix_midpoint(k::Float64, xs, ns, w; interior::Bool=true)
+    N = length(xs)
     A = zeros(ComplexF64, N, N)
+    jump = interior ? -0.5 : 0.5
+
     for i in 1:N
+        A[i,i] = jump                # jump term only
+        xi = xs[i]
         for j in 1:N
-            A[i, j] = (i==j ? -0.5 : 0.0) + QuantumBilliards.kernel_bem(xs[i], xs[j], ns[i], k) * w[j]
+            if i == j
+                continue             # PV(self) = 0 for straight panel midpoint; keep only jump
+            end
+            A[i,j] += kernel_bem(xi, xs[j], ns[j], k) * w[j]  # use SOURCE normal ns[j]
         end
     end
     return A
