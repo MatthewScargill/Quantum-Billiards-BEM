@@ -1,6 +1,3 @@
-using LinearAlgebra
-using SpecialFunctions   # for Hankel functions
-
 # Boundary parameterization for the square with Lx = 1 and Ly = 1.
 Lx = 1.0
 Ly = 1.0

@@ -1,6 +1,3 @@
-using LinearAlgebra
-using SpecialFunctions   # For Hankel functions
-
 # Boundary parameterization for the cardioid 
 function cardioid_boundary(θ)
     r = 1 + cos(θ)

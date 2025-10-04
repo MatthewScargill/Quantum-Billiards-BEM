@@ -1,6 +1,3 @@
-using LinearAlgebra
-using SpecialFunctions   # for Hankel functions
-
 # Boundary parameterization for the rectangle with Lx = 1 and Ly = sqrt(2).
 Lx = 1.0
 Ly = sqrt(2)

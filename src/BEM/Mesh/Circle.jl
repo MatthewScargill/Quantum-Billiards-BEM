@@ -1,7 +1,4 @@
-using LinearAlgebra
-using SpecialFunctions   # For Hankel functions
-
-# Boundary parameterization for the cardioid 
+# Boundary parameterization for the circle 
 function circle_boundary(θ)
     r = 1 
     return [r * cos(θ), r * sin(θ)]

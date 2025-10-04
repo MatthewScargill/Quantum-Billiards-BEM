@@ -5,6 +5,7 @@ include("BEM/Mesh/Cardioid.jl")
 include("BEM/Mesh/Circle.jl")
 include("BEM/Mesh/Rectangle.jl")
 include("BEM/Mesh/Square.jl")
+include("BEM/Mesh/Stadium.jl")
 
 # BEM functions
 include("BEM/GreenKernel.jl")
@@ -23,7 +24,7 @@ include("Visualisation/ResVis.jl")
 include("Visualisation/WDStatsvis.jl")
 
 
-export cardioid_info, circle_info, rect_info, square_info
+export cardioid_info, circle_info, rect_info, square_info, stadium_info
 export kernel_bem, build_BEM_matrix, resonant_modes
 export plot_boundary, plot_billiard
 

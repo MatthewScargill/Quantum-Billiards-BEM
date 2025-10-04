@@ -1,15 +1,20 @@
-# helmholtz-bem-billiards
-Boundary Element Method (BEM) toolkit for the 2D Helmholtz equation in billiard domains (circle, rectangle/square, cardioid, stadium in progress). It assembles boundary integral operators, scans wavenumbers to find resonant modes, and includes simple visualisation and spectral statistics utilities.
+# Boundary Element Method for Quantum Billiards
 
-Features
-•	Domains: Circle, Rectangle/Square, Cardioid (stadium WIP)
+Spectrum solver for 2D Helmholtz quantum billiard problems. Implements a Boundary Element Method (BEM) to construct boundary data, assemble boundary integral operators, and scan wavenumbers to approximate resonant modes. Includes simple spectrum and billiard visualisations.
 
-•	BEM building blocks: boundary parameterisations, tangents/normals, quadrature weights
+## Overview (with scientific backing)
 
-•	Operators: single-layer (and hooks for others)
+## Features
+list of things it can do 
 
-•	Resonance search: scan k and detect minima of singular values
+## Quickstart example
 
-•	Visualisation: quick plots of boundaries and resonance diagnostics
+(maybe merge the above 2)
 
-•	Spectral tools: unfolding and nearest-neighbour spacing stats (Wigner–Dyson, etc.)
+
+## Structure
+
+## 
+
+
+Contributions, extensions, or research discussions are welcome.
