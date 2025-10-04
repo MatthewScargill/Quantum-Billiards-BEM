@@ -25,10 +25,11 @@ end
 
 function plot_billiard(xs,ns,w,k)
 
+    # setup
     num_pts = 200
     padding=0.05
 
-    # Tight plotting box from boundary with small padding
+    # tight plotting box from boundary with small padding
     X = reduce(hcat, xs)'                 # (N, 2)
     xmin, xmax = minimum(X[:,1]), maximum(X[:,1])
     ymin, ymax = minimum(X[:,2]), maximum(X[:,2])
@@ -47,7 +48,7 @@ function plot_billiard(xs,ns,w,k)
     for (i, x_val) in enumerate(xgrid)
         for (j, y_val) in enumerate(ygrid)
             x = [x_val, y_val]
-            # Only compute u(x) if x is inside the circle; otherwise, assign NaN.
+            # only compute u(x) if x is inside the boundary; otherwise, assign NaN
             if is_inside(x, xs) == true
                 u_vals[j, i] = abs(u_interior(x, phi, xs, ns, w, k))
             else
@@ -56,6 +57,7 @@ function plot_billiard(xs,ns,w,k)
         end
     end
 
+    # draw heatmap
     heatmap(xgrid, ygrid, u_vals,
         xlabel = "x",
         ylabel = "y",

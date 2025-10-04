@@ -1,13 +1,14 @@
 using Plots
 
 function plot_boundary(boundary_info; normal_scale=0.12, step=1)
-    xs, ns, w = boundary_info
+
+    xs, ns, w = boundary_info # unpack
 
     # Convert to arrays
     X = reduce(hcat, xs)'   # (N, 2)
     Nn = reduce(hcat, ns)'  # (N, 2)
 
-    # Boundary polygon (closed loop)
+    # boundary polygon (closed loop)
     xcoords = vcat(X[:,1], X[1,1])
     ycoords = vcat(X[:,2], X[1,2])
 
@@ -19,12 +20,12 @@ function plot_boundary(boundary_info; normal_scale=0.12, step=1)
         legend=false
     )
 
-    # Add normals (downsampled by step)
+    # Add normals
     for i in 1:step:size(X,1)
         x, y = X[i, :]
         nx, ny = Nn[i, :]
         plot!([x, x + normal_scale*nx], [y, y + normal_scale*ny],
-              arrow=:arrow, linewidth=1.5, color=:red)
+              arrow=:arrow, linewidth=1.5, color=:red) # adding arrows (thanks julia that was easy)
     end
 
     return plt
