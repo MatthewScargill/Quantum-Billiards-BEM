@@ -3,7 +3,7 @@ using SpecialFunctions
 using .QuantumBilliards
 
 function min_singular_value(k::Float64, xs, ns, w)
-    A = QuantumBilliards.build_BEM_matrix_midpoint(k, xs, ns, w; interior=true)
+    A = QuantumBilliards.build_BEM_matrix(k, xs, ns, w; interior=true)
     s = svdvals(A)
     return minimum(s)
 end

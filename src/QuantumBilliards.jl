@@ -26,6 +26,7 @@ include("Visualisation/WeylComp.jl")
 
 export cardioid_info, circle_info, rect_info, square_info, stadium_info
 export kernel_bem, build_BEM_matrix, resonant_modes
+export weyl_convert, weyl_unfold, weyl_count
 export plot_boundary, plot_billiard
 
 end

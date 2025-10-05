@@ -17,8 +17,13 @@ end
 # counting function for weylcomp visualisation
 
 # Build the cumulative counting function: for each k in k_values, count resonances below k.
-function weyl_count(unfolded_spectrum)
+function weyl_count(unfolded_spectrum, k)
     mode_count = 0
-    mode_count = [sum(res -> res <= k, unfolded_spectrum) for k in k_values]
+    for res in unfolded_spectrum
+        if res < k
+            mode_count += 1
+        else break
+        end
+    end
     return mode_count
 end

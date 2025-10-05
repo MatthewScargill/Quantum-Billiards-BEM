@@ -1,8 +1,10 @@
 using .QuantumBilliards
 #import numpy as np
-N = 100
+N = 20
 
-boundary_info = QuantumBilliards.stadium_info(N)
+xs, ns, w = QuantumBilliards.rect_info(N)
+
+boundary_info = xs, ns, w
 
 QuantumBilliards.plot_boundary(boundary_info)
 
@@ -15,5 +17,9 @@ QuantumBilliards.plot_boundary(boundary_info)
 #print(sqrt(10.2323) * 2)
 
 
-#res = QuantumBilliards.resonant_modes(1.0, 10.0, 700, xs, ns, w)
+#spectrum = QuantumBilliards.resonant_modes(1.0, 20.0, 5000, xs, ns, w)
 #print(res)
+
+#geom_data = (3.1416, 6.283)
+
+#QuantumBilliards.plot_weylcomp(spectrum, geom_data)
