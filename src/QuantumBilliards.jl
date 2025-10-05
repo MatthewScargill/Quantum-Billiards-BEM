@@ -14,14 +14,14 @@ include("BEM/Resonances.jl")
 include("BEM/Solver.jl")
 
 # Spectral functions
-include("Spectral/Unfolding.jl")
-include("Spectral/WDStats.jl")
+include("Spectral/Weyl.jl")
+include("Spectral/WignerDyson.jl")
 
 # Visualisation functions
 include("Visualisation/BoundaryVis.jl")
 include("Visualisation/BilliardVis.jl")
-include("Visualisation/ResVis.jl")
-include("Visualisation/WDStatsvis.jl")
+include("Visualisation/SpacingVis.jl")
+include("Visualisation/WeylComp.jl")
 
 
 export cardioid_info, circle_info, rect_info, square_info, stadium_info
