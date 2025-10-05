@@ -1,12 +1,12 @@
 using .QuantumBilliards
 #import numpy as np
-N = 20
+N = 600
 
-xs, ns, w = QuantumBilliards.rect_info(N)
+xs, ns, w = QuantumBilliards.cardioid_info(N)
 
 boundary_info = xs, ns, w
 
-QuantumBilliards.plot_boundary(boundary_info)
+#QuantumBilliards.plot_boundary(boundary_info)
 
 #QuantumBilliards.plot_billiard(xs, ns, w, 6.397593297483047)
 
@@ -17,9 +17,12 @@ QuantumBilliards.plot_boundary(boundary_info)
 #print(sqrt(10.2323) * 2)
 
 
-#spectrum = QuantumBilliards.resonant_modes(1.0, 20.0, 5000, xs, ns, w)
-#print(res)
+spectrum = QuantumBilliards.resonant_modes(1.0, 15.0, 2000, xs, ns, w)
 
-#geom_data = (3.1416, 6.283)
+print(length(spectrum))
+#geom_data = (1.4142135623730951, 4.82842712474619)
+geom_data = ((3/2)*π, 8)
 
-#QuantumBilliards.plot_weylcomp(spectrum, geom_data)
+#
+QuantumBilliards.plot_weylcomp(spectrum,geom_data)
+#QuantumBilliards.plot_unfolded_spacings(spectrum, geom_data)
