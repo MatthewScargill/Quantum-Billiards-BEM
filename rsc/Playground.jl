@@ -1,13 +1,13 @@
 using .QuantumBilliards
 #import numpy as np
-N = 40
+N = 1400  
 
-xs, ns, w, geom_data = QuantumBilliards.stadium_info(N)
+xs, ns, w, geom_data = QuantumBilliards.cardioid_info(N)
 
 
-QuantumBilliards.plot_boundary(xs, ns, w)
+#QuantumBilliards.plot_boundary(xs, ns, w)
 
-#QuantumBilliards.plot_billiard(xs, ns, w, 6.397593297483047)
+QuantumBilliards.plot_billiard(xs, ns, w, 6.397593297483047)
 
 
 #3.1987966487415234
