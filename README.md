@@ -14,7 +14,15 @@ list of things it can do
 
 ## Structure
 
-## 
+## installation
+
+this clones the repo and opens the project
+> git clone https://github.com/yourusername/QuantumBilliards.jl.git
+> cd QuantumBilliards.jl
+
+this deals with dependencies when run in the julia REPL
+> using Pkg; Pkg.activate("."); Pkg.instantiate()
+
 
 
 Contributions, extensions, or research discussions are welcome.
