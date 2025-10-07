@@ -13,13 +13,13 @@ function plot_weylcomp(spectrum::AbstractVector{<:Real}, geom_data::Tuple{<:Real
     kmax = maximum(ks)
     kgrid = range(0, kmax; length=num_points)
 
-    # Empirical staircase N(k): count how many levels ≤ k
+    # empirical staircase N(k): count how many levels ≤ k
     N_emp = [weyl_count(ks, k) for k in kgrid]
 
-    # Smooth Weyl prediction N̄(k)
+    # smooth Weyl prediction N̄(k)
     N_weyl = [weyl_convert(k, geom_data) for k in kgrid]
 
-    # Plot the comparison
+    # plot the comparison
     plot(kgrid, N_emp;
          seriestype = :steppost,
          lw = 2,

@@ -1,4 +1,6 @@
 # Boundary parameterization for the Bunimovitch Stadium (with L = 1 and R = 1).
+stadium_perimeter(R::Float64, L::Float64) = 2L + 2π*R
+
 function stadium_boundary(s::Float64; R::Float64=1.0, L::Float64=1.0)
     P = stadium_perimeter(R, L)
     s = mod(s, P)
@@ -95,6 +97,6 @@ function stadium_info(N::Int; R::Float64=1.0, L::Float64=1.0)
     xs = [stadium_boundary(s; R=R, L=L) for s in s_vals]
     ns = [stadium_outward_normal(s; R=R, L=L) for s in s_vals]
     w  = stadium_quadrature_weights(s_vals; R=R, L=L)
-    geom_data = ((R^2)*π +2RL, 2L + 2π*R)
-    return xs, ns, w, geom_data 
+    geom_data = ((R^2)*π +2*R*L, 2L + 2π*R)
+    return xs, ns, w, geom_data
 end
