@@ -2,7 +2,7 @@
 using Plots
 using .QuantumBilliards
 
-function plot_weylcomp(spectrum, geom_data)
+function plot_weylcomp(spectrum::AbstractVector{<:Real}, geom_data::Tuple{<:Real,<:Real})
     
 
     num_points::Int=1000

@@ -33,5 +33,6 @@ function cardioid_info( N::Int)
     xs = [cardioid_boundary(θ) for θ in rng]
     ns = [cardioid_outward_normal(θ) for θ in rng]
     w = cardioid_quadrature_weights(collect(rng))
-    return xs, ns, w
+    geom_data = ((3/2)*π, 8)
+    return xs, ns, w, geom_data
 end

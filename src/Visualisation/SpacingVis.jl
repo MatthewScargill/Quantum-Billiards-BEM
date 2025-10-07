@@ -2,7 +2,7 @@ using .QuantumBilliards
 using StatsBase
 
 # wigner dyson histogram + add option to overlay poisson and or GOE
-function plot_unfolded_spacings(spectrum, geom_data)
+function plot_unfolded_spacings(spectrum::AbstractVector{<:Real}, geom_data::Tuple{<:Real,<:Real})
 
     unfolded_spectrum = weyl_unfold(spectrum, geom_data)
     spacings = QuantumBilliards.spectrum_spacings(unfolded_spectrum)

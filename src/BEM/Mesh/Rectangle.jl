@@ -1,4 +1,4 @@
-# Boundary parameterization for the rectangle with rrLx = 1 and rLy = sqrt(2).
+# Boundary parameterization for the rectangle (with rrLx = 1 and rLy = sqrt(2)).
 rLx = 1.0
 rLy = sqrt(2)
 rL_total = 2*(rLx + rLy)  # total boundary length
@@ -57,5 +57,6 @@ function rect_info( N::Int)
     xs = [rect_boundary(s) for s in s_vals]
     ns = [rect_outward_normal(s) for s in s_vals]
     w = rect_quadrature_weights(s_vals)
-    return xs, ns, w
+    geom_data = (rLy * rLx, rL_total) 
+    return xs, ns, w, geom_data
 end

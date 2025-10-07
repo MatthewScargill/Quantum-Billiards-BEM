@@ -23,7 +23,8 @@ function is_inside(x::Vector{Float64}, xs::Vector{Vector{Float64}})::Bool
 end
 
 
-function plot_billiard(xs,ns,w,k)
+function plot_billiard(xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
+    w::Vector{Float64}, k::Float64)
 
     # setup
     num_pts = 200

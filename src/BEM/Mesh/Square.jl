@@ -1,4 +1,4 @@
-# Boundary parameterization for the square with Lx = 1 and Ly = 1.
+# Boundary parameterization for the unit square.
 Lx = 1.0
 Ly = 1.0
 L_total = 2*(Lx + Ly)  # total boundary length
@@ -57,5 +57,6 @@ function square_info( N::Int)
     xs = [square_boundary(s) for s in s_vals]
     ns = [square_outward_normal(s) for s in s_vals]
     w = square_quadrature_weights(s_vals)
-    return xs, ns, w
+    geom_data = (1, 4)
+    return xs, ns, w, geom_data
 end

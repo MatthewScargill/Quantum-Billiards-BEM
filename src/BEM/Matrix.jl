@@ -1,6 +1,7 @@
 using .QuantumBilliards
 
-function build_BEM_matrix(k::Float64, xs, ns, w; interior::Bool=true)
+function build_BEM_matrix(k::Float64, xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
+     w::Vector{Float64}; interior::Bool=true)
     N = length(xs)
     A = zeros(ComplexF64, N, N)
     jump = interior ? -0.5 : 0.5 # interior or exterior jump term

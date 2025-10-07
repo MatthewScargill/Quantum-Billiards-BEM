@@ -1,4 +1,4 @@
-# Boundary parameterization for the circle 
+# Boundary parameterization for the unit circle 
 function circle_boundary(θ)
     r = 1 
     return [r * cos(θ), r * sin(θ)]
@@ -31,5 +31,6 @@ function circle_info( N::Int)
     xs = [circle_boundary(θ) for θ in rng]
     ns = [circle_outward_normal(θ) for θ in rng]
     w = circle_quadrature_weights(collect(rng))
-    return xs, ns, w
+    geom_data = (π, 2* π) 
+    return xs, ns, w, geom_data
 end

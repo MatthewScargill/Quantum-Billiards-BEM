@@ -1,5 +1,5 @@
 # convert to weyl value
-function weyl_convert(k::Real, geom_data::Tuple{<:Real,<:Real})
+function weyl_convert(k::Float64, geom_data::Tuple{<:Real,<:Real})
     A, P = geom_data  # (Area, Perimeter)
     return (A/(4π))*k^2 - (P/(4π))*k
 end
@@ -17,7 +17,7 @@ end
 # counting function for weylcomp visualisation
 
 # Build the cumulative counting function: for each k in k_values, count resonances below k.
-function weyl_count(unfolded_spectrum, k)
+function weyl_count(unfolded_spectrum::AbstractVector{<:Real}, k::Float64)
     mode_count = 0
     for res in unfolded_spectrum
         if res < k
