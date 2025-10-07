@@ -64,7 +64,7 @@ QuantumBilliards.plot_billiard(xs, ns, w, test_res)
 
 ![example billiard](rsc/img/example_billiard.svg)
 
-(a complete notebook of the functions can be found in rsc/)
+(a complete notebook of functions can be found in rsc/)
 ## Installation
 
 To install and use this module, run 
