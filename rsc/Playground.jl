@@ -1,13 +1,13 @@
 using .QuantumBilliards
 #import numpy as np
-N = 1400  
+N = 900  
 
 xs, ns, w, geom_data = QuantumBilliards.cardioid_info(N)
 
 
 #QuantumBilliards.plot_boundary(xs, ns, w)
 
-QuantumBilliards.plot_billiard(xs, ns, w, 6.397593297483047)
+#QuantumBilliards.plot_billiard(xs, ns, w, 6.397593297483047)
 
 
 #3.1987966487415234
@@ -16,7 +16,7 @@ QuantumBilliards.plot_billiard(xs, ns, w, 6.397593297483047)
 #print(sqrt(10.2323) * 2)
 
 
-#spectrum = QuantumBilliards.resonant_modes(1.0, 15.0, 2000, xs, ns, w)
+spectrum = QuantumBilliards.resonant_modes(1.0, 15.0, 2000, xs, ns, w)
 
 #print(length(spectrum))
 #geom_data = (1.4142135623730951, 4.82842712474619)

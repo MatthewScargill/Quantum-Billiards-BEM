@@ -14,7 +14,7 @@ This project applies a Nyström-based **Boundary Element Method (BEM)** to conve
 ```math
 G_{k}(\mathbf{r}, \mathbf{r'}) = \frac{i}{4} H_{0}^{(1)}(k|\mathbf{r}- \mathbf{r'}|).
 ```
-This leads to an matrix formulation of the form ($A\psi = 0$), to which solutions are deduced by scanning across a range of $k$ and detecting singularities in the boundary operator $A$ via **SVD minima**. Evaluating at individual resonant modes allows us to reconstruct physically relevant wavefunction solutions on the billiard as seen below. More generally, evaluating the spacing (Wigner-Dyson) statistics of the spectra of billiard systems allow us to draw parallels between classical and quantum notions of chaos. This project is equipped with the tools for all of the above, along with my thesis which acts as a more comprehensive manual for the theory.
+This leads to an matrix formulation of the form ($A\psi = 0$), to which solutions are deduced by scanning across a range of $k$ and detecting singularities in the boundary operator $A$ via **SVD minima**. Evaluating at individual resonant modes allows us to reconstruct physically relevant wavefunction solutions on the billiard as seen below. More generally, evaluating the spacing (Wigner-Dyson) statistics of the spectra of billiard systems allow us to draw parallels between classical and quantum notions of chaos. This project is equipped with the tools for all of the above, along with my thesis which acts as a comprehensive introduction to the theory.
 
 ## Features
 
@@ -26,46 +26,57 @@ This leads to an matrix formulation of the form ($A\psi = 0$), to which solution
 - ✅ Spacing distribution and spectral statistics analysis  
 - ✅ Support for circle, square, rectangle, cardioid, and Bunimovitch stadium geometries
 
+## Directory Structure
+- BEM/
+    - Mesh/ -- boundary and mesh data construction
+    - GreenKernel.jl -- kernel function
+    - Matrix.jl -- Matrix operator constuction
+    - Resonances.jl -- resonant mode detection
+    - Solver. jl -- boundary data and wavefunction solver
+- Spectral/
+    - Weyl.jl -- spectrum unfolding and counting function
+    - WignerDyson.jl -- level spacing statistics
+- Visualisation/
+    - BilliardVis.jl -- stationary solutions
+    - SpacingVis.jl -- level spacing statistics
+    - WeylComp.jl -- comparison to weyl prediction
+    - BoundaryVis.jl -- boundary data 
 
 ## Quickstart example
+```julia
+using .QuantumBilliards
 
-(maybe merge the above 2)
+# Set the number of boundary discretization points
+N = 900  
+
+# Extract nodes, normals, weights, and billiard geometry data using a _info function
+xs, ns, w, geom_data = QuantumBilliards.cardioid_info(N)
+
+# Find resonant modes between 1 and 15. Here, 2000 is the number of sampled evaluation points.
+spectrum = QuantumBilliards.resonant_modes(1.0, 15.0, 2000, xs, ns, w) # here, 2000 is 
+
+# Isolate a resonant mode and produce the associated bound state solution on the billiard
+
+test_res = spectrum[7] # picking the seventh mode
+
+QuantumBilliards.plot_billiard(xs, ns, w, test_res)
+```
 
 ![example billiard](rsc/img/example_billiard.svg)
 
+(a complete notebook of the functions can be found in rsc/)
+## Installation
 
-
-## Structure
-
-## installation
-
-this clones the repo 
-
+To install and use this module, run 
 ```
-git clone https://github.com/MatthewScargill/QuantumBilliards.jl.git
+using Pkg
+Pkg.add(url="https://github.com/MatthewScargill/QuantumBilliards.jl.git")
 ```
-opens the project
-
-```
-cd QuantumBilliards.jl 
-```
-
-then run this in the julia repl to deal with dependencies
-
-
-
-
-```
-using Pkg; Pkg.activate("."); Pkg.instantiate()
-```
-
-now just bash out one of these badboys 
-
-
+in a Julia REPL, and call 
 ```
 using QuantumBilliards
 ```
+at the top of your files.
 
 -----
-
-Contributions, extensions, or research discussions are welcome.
+Questions, extensions, and research discussions are welcome.
