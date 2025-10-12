@@ -2,7 +2,7 @@
 
 Spectrum solver for 2D Helmholtz quantum billiard problems with Dirichlet boundary conditions. Implements a Boundary Element Method (BEM) to construct boundary data, assemble boundary integral operators, and scan wavenumbers to approximate resonant modes. Includes wavefunction visualisation and spectral analysis tools. 
 
-This is a refined version of code originally developed for my master's project (text found in rsc/). It's still a good companion to this repo as the methods are identical and it provides physical context.
+This is a refined version of code originally developed for my master's project (text found in rsc/). It's still a good companion to this repo as the methods are identical.
 
 ## Overview
 Quantum billiards describe particles confined in a 2D region with perfectly reflecting walls. Solving the Helmholtz equation under Dirichlet boundary conditions
@@ -14,7 +14,7 @@ This project applies a Nyström-based **Boundary Element Method (BEM)** to conve
 ```math
 G_{k}(\mathbf{r}, \mathbf{r'}) = \frac{i}{4} H_{0}^{(1)}(k|\mathbf{r}- \mathbf{r'}|).
 ```
-This leads to an matrix formulation of the form ($A\psi = 0$), to which solutions are deduced by scanning across a range of $k$ and detecting singularities in the boundary operator $A$ via **SVD minima**. Evaluating at individual resonant modes allows us to reconstruct physically relevant wavefunction solutions on the billiard as seen below. More generally, evaluating the spacing (Wigner-Dyson) statistics of the spectra of billiard systems allow us to draw parallels between classical and quantum notions of chaos. This project is equipped with the tools for all of the above, along with my thesis which acts as a comprehensive introduction to the theory.
+This leads to an matrix formulation of the form ($A\phi = 0$, where $\phi = \frac{\partial \psi}{\partial r}$), to which solutions are deduced by scanning across a range of $k$ and detecting singularities in the boundary operator $A$ via **SVD minima**. Evaluating at individual resonant modes and solving for $\frac{\partial \psi}{\partial r}$ along the boundary allows us to reconstruct physically relevant wavefunction solutions $\psi$ on the billiard as seen below. More generally, evaluating the spacing (Wigner-Dyson) statistics of the spectra of billiard systems allows us to draw parallels between classical and quantum notions of chaos. This project is equipped with the tools for all of the above, along with my thesis which acts as a comprehensive introduction to the theory.
 
 ## Features
 
@@ -30,7 +30,7 @@ This leads to an matrix formulation of the form ($A\psi = 0$), to which solution
 - BEM/
     - Mesh/ -- boundary and mesh data construction
     - GreenKernel.jl -- kernel function
-    - Matrix.jl -- Matrix operator constuction
+    - Matrix.jl -- matrix operator constuction
     - Resonances.jl -- resonant mode detection
     - Solver. jl -- boundary data and wavefunction solver
 - Spectral/
