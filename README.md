@@ -10,7 +10,7 @@ Quantum billiards describe particles confined in a 2D region with perfectly refl
 (\nabla^2 + k^2)\psi = 0, \quad \psi|_{\partial \Omega} = 0
 ```
 gives rise to resonant eigenfrequencies $k_i$ which correspond to the energy spectrum of the system ($E_i=k_i^2$).
-This project applies a Nyström-based **Boundary Element Method (BEM)** to convert this equation into a **Boundary Integral Equation** using the free-space Green’s function
+This project applies a Nyström-based **Boundary Element Method (BEM)** to convert this equation into a **Boundary Integral Equation** using the 2D free-space Green’s function
 ```math
 G_{k}(\mathbf{r}, \mathbf{r'}) = \frac{i}{4} H_{0}^{(1)}(k|\mathbf{r}- \mathbf{r'}|).
 ```
@@ -52,19 +52,18 @@ N = 900
 # Extract nodes, normals, weights, and billiard geometry data using a _info function
 xs, ns, w, geom_data = QuantumBilliards.cardioid_info(N)
 
-# Find resonant modes between 1 and 15. Here, 2000 is the number of sampled evaluation points.
-spectrum = QuantumBilliards.resonant_modes(1.0, 15.0, 2000, xs, ns, w) # here, 2000 is 
+# Find resonant modes between 1 and 15, evaluated at 2000 interim points
+spectrum = QuantumBilliards.resonant_modes(1.0, 15.0, 2000, xs, ns, w)
 
 # Isolate a resonant mode and produce the associated bound state solution on the billiard
-
 test_res = spectrum[7] # picking the seventh mode
-
 QuantumBilliards.plot_billiard(xs, ns, w, test_res)
 ```
 
 ![example billiard](rsc/img/example_billiard.svg)
 
-(a complete notebook of functions can be found in rsc/)
+(a practical notebook of functions can be found in rsc/)
+
 ## Installation
 
 To install and use this module, run 
