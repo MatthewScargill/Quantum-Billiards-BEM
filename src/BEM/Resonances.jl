@@ -24,3 +24,8 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
     end
     return k_values[idx]
 end
+
+# make min_singular_value just take in A
+# initialise tab at beginning of resonant_modes
+# matrix construction is a lot lighter with tab so can chuck in a loop and not feel too plot_boundary
+# 
