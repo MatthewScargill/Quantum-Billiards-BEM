@@ -1,5 +1,4 @@
 using LinearAlgebra
-using SpecialFunctions
 using .QuantumBilliards
 
 function compute_phi(k::Float64, xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},

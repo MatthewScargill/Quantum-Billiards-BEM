@@ -1,7 +1,9 @@
+using StaticArrays
+
 # Boundary parameterization for the Bunimovitch Stadium (with L = 1 and R = 1).
 stadium_perimeter(R::Float64, L::Float64) = 2L + 2π*R
 
-function stadium_boundary(s::Float64; R::Float64=1.0, L::Float64=1.0)
+@inline function stadium_boundary(s::Float64; R::Float64=1.0, L::Float64=1.0)
     P = stadium_perimeter(R, L)
     s = mod(s, P)
 
@@ -13,24 +15,24 @@ function stadium_boundary(s::Float64; R::Float64=1.0, L::Float64=1.0)
     if s < s1
         θ = -π/2 + s/R
         cx, cy =  L/2, 0.0
-        return [cx + R*cos(θ), cy + R*sin(θ)]
+        return @SVector [cx + R*cos(θ), cy + R*sin(θ)]
 
     elseif s < s2
         u = s - s1
-        return [L/2 - u, R]
+        return @SVector [L/2 - u, R]
 
     elseif s < s3
         θ =  π/2 + (s - s2)/R
         cx, cy = -L/2, 0.0
-        return [cx + R*cos(θ), cy + R*sin(θ)]
+        return @SVector [cx + R*cos(θ), cy + R*sin(θ)]
 
     else
         u = s - s3
-        return [-L/2 + u, -R]
+        return @SVector [-L/2 + u, -R]
     end
 end
 
-function stadium_derivative(s::Float64; R::Float64=1.0, L::Float64=1.0)
+@inline function stadium_derivative(s::Float64; R::Float64=1.0, L::Float64=1.0)
     P = stadium_perimeter(R, L)
     s = mod(s, P)
 
@@ -41,23 +43,23 @@ function stadium_derivative(s::Float64; R::Float64=1.0, L::Float64=1.0)
     if s < s1
         θ = -π/2 + s/R
         # Unit tangent for circle CCW: [-sinθ, cosθ]
-        return [-sin(θ), cos(θ)]
+        return @SVector [-sin(θ), cos(θ)]
 
     elseif s < s2
         # Top straight moving left
-        return [-1.0, 0.0]
+        return @SVector [-1.0, 0.0]
 
     elseif s < s3
         θ =  π/2 + (s - s2)/R
-        return [-sin(θ), cos(θ)]
+        return @SVector [-sin(θ), cos(θ)]
 
     else
         # Bottom straight moving right
-        return [1.0, 0.0]
+        return @SVector [1.0, 0.0]
     end
 end
 
-function stadium_outward_normal(s::Float64; R::Float64=1.0, L::Float64=1.0)
+@inline function stadium_outward_normal(s::Float64; R::Float64=1.0, L::Float64=1.0)
     P = stadium_perimeter(R, L)
     s = mod(s, P)
 
@@ -68,20 +70,20 @@ function stadium_outward_normal(s::Float64; R::Float64=1.0, L::Float64=1.0)
     if s < s1
         θ = -π/2 + s/R
         # Radial outward normal on right semicircle:
-        return [cos(θ), sin(θ)]
+        return @SVector [cos(θ), sin(θ)]
 
     elseif s < s2
         # Top straight: interior is below → outward is +y
-        return [0.0, 1.0]
+        return @SVector [0.0, 1.0]
 
     elseif s < s3
         θ =  π/2 + (s - s2)/R
         # Radial outward normal on left semicircle:
-        return [cos(θ), sin(θ)]
+        return @SVector [cos(θ), sin(θ)]
 
     else
         # Bottom straight: interior is above → outward is -y
-        return [0.0, -1.0]
+        return @SVector [0.0, -1.0]
     end
 end
 

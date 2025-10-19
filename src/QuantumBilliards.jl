@@ -8,7 +8,7 @@ include("BEM/Mesh/Square.jl")
 include("BEM/Mesh/Stadium.jl")
 
 # BEM functions
-include("BEM/GreenKernel.jl")
+include("BEM/Kernel.jl")
 include("BEM/Matrix.jl")
 include("BEM/Resonances.jl")
 include("BEM/Solver.jl")

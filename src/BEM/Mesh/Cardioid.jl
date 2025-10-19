@@ -1,20 +1,22 @@
+using StaticArrays
+
 # Boundary parameterization for the cardioid 
-function cardioid_boundary(θ)
+@inline function cardioid_boundary(θ)
     r = 1 + cos(θ)
-    return [r * cos(θ), r * sin(θ)]
+    return @SVector [r * cos(θ), r * sin(θ)]
 end
 
-function cardioid_derivative(θ)
+@inline function cardioid_derivative(θ)
     r = 1 + cos(θ)
     rp = -sin(θ)
     dx = rp*cos(θ) - r*sin(θ)
     dy = rp*sin(θ) + r*cos(θ)
-    return [dx, dy]
+    return @SVector [dx, dy]
 end
 
-function cardioid_outward_normal(θ)
+@inline function cardioid_outward_normal(θ)
     d = cardioid_derivative(θ)
-    n = [d[2], -d[1]]
+    n = @SVector [d[2], -d[1]]
     return n / norm(n)
 end
 
