@@ -17,7 +17,6 @@ where
 ```math
 G_{k}(\mathbf{r}, \mathbf{r'}) = \frac{i}{4} H_{0}^{(1)}(k|\mathbf{r}- \mathbf{r'}|).
 ```
-We use the N converted 
 is the 2D free-space Green’s function. This equation is approximated to a matrix equation of the form $A\phi = 0$, where $\phi = \frac{\partial \psi}{\partial r}$, using the Nyström quadrature method. Solutions are deduced by scanning across a range of $k$ and detecting singularities in the boundary operator $A$ via **SVD minima**. Evaluating at individual resonant modes and solving for $\frac{\partial \psi}{\partial r}$ along the boundary allows us to reconstruct physically relevant wavefunction solutions $\psi$ on the billiard as seen below. More generally, evaluating the spacing (Wigner-Dyson) statistics of the spectra of billiard systems allows us to draw parallels between classical and quantum notions of chaos. 
 
 ## Features
