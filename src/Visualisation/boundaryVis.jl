@@ -1,7 +1,7 @@
 using Plots
 
-function plot_boundary(xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
-    w::Vector{Float64}; normal_scale=0.12, step=1)
+function plot_boundary(xs::AbstractVector{SVector{2,Float64}}, ns::AbstractVector{SVector{2,Float64}},
+    w::AbstractVector{Float64}; normal_scale=0.12, step=1)
 
     # Convert to arrays
     X = reduce(hcat, xs)'   # (N, 2)

@@ -12,7 +12,23 @@ using .QuantumBilliards
         return 0.0 + 0im  # jump term taken care of in matrix construction
     else
         proj = dot(rvec, n) / r
-        kr   = k * r
+        kr   = k*r
+        h1   = hankel_eval(H, kr)
+        return (im * k / 4) * h1 * proj
+    end
+end
+
+
+# this method is for interior comparisons (single k BilliardVis function)
+@inline function kernel_bem(x::Vector{Float64}, y::SVector{2,Float64}, 
+    n::SVector{2,Float64}, k::Float64, H::QuantumBilliards.HankelTable) 
+    rvec = x .- y
+    r = norm(rvec)
+    if r < TOL
+        return 0.0 + 0im  # jump term taken care of in matrix construction
+    else
+        proj = dot(rvec, n) / r
+        kr   = k*r
         h1   = hankel_eval(H, kr)
         return (im * k / 4) * h1 * proj
     end

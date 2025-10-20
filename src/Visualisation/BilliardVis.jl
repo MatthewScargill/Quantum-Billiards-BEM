@@ -1,7 +1,7 @@
 using LinearAlgebra
 using Plots
 
-function is_inside(x::Vector{Float64}, xs::Vector{Vector{Float64}})::Bool
+function is_inside(x::Vector{Float64}, xs::AbstractVector{SVector{2,Float64}})::Bool
     n = length(xs)
     inside = false
     px, py = x[1], x[2]
@@ -23,7 +23,7 @@ function is_inside(x::Vector{Float64}, xs::Vector{Vector{Float64}})::Bool
 end
 
 
-function plot_billiard(xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
+function plot_billiard(xs::AbstractVector{SVector{2,Float64}}, ns::AbstractVector{SVector{2,Float64}},
     w::Vector{Float64}, k::Float64)
 
     # setup
@@ -34,7 +34,6 @@ function plot_billiard(xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
     X = reduce(hcat, xs)'                 # (N, 2)
     xmin, xmax = minimum(X[:,1]), maximum(X[:,1])
     ymin, ymax = minimum(X[:,2]), maximum(X[:,2])
-    dx, dy = xmax - xmin, ymax - ymin
     
     xlo, xhi = xmin - padding, xmax + padding
     ylo, yhi = ymin - padding, ymax + padding
@@ -44,14 +43,18 @@ function plot_billiard(xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
     u_vals = Array{Float64}(undef, num_pts, num_pts)  # to store |u(x)|
 
 
-    phi, _ = compute_phi(k, xs, ns, w)
+    # call tabulation here
+    tab =  QuantumBilliards.tabulate_hankel(xs, k)
+
+    # phi using tab here 
+    phi, _ = compute_phi(k, xs, ns, w, tab)
 
     for (i, x_val) in enumerate(xgrid)
         for (j, y_val) in enumerate(ygrid)
             x = [x_val, y_val]
             # only compute u(x) if x is inside the boundary; otherwise, assign NaN
             if is_inside(x, xs) == true
-                u_vals[j, i] = abs(u_interior(x, phi, xs, ns, w, k))
+                u_vals[j, i] = abs(u_interior(x, phi, xs, ns, w, k, tab)) # interior using tab here
             else
                 u_vals[j, i] = NaN
             end

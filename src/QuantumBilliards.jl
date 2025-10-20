@@ -7,7 +7,7 @@ using Base.Threads
 using Plots
 using StatsBase
 
-
+# smallest distance before jump term triggered
 const TOL = 1e-14
 
 # Mesh files

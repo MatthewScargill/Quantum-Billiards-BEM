@@ -3,7 +3,7 @@ function weyl_convert(k::Float64, geom_data::Tuple{<:Real,<:Real})
     return (A/(4π))*k^2 - (P/(4π))*k
 end
 
-function weyl_count(spectrum, k::Float64)
+function weyl_count(spectrum::Vector{Float64}, k::Float64)
     mode_count = 0
     for res in spectrum
         if res < k
@@ -14,7 +14,7 @@ function weyl_count(spectrum, k::Float64)
     return mode_count
 end
 
-function weyl_unfold(spectrum, geom_data::Tuple{<:Real,<:Real})
+function weyl_unfold(spectrum::Vector{Float64}, geom_data::Tuple{<:Real,<:Real})
     unfolded_spectrum = []
     for res in spectrum
         push!(unfolded_spectrum, weyl_convert(res, geom_data))

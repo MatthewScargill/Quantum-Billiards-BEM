@@ -1,15 +1,11 @@
 using LinearAlgebra
 using SpecialFunctions
 using .QuantumBilliards
-
-
-function min_singular_value(A::Matrix{ComplexF64})
-    s = svdvals(A)
-    return minimum(s)
-end
+using Base.Threads
 
 function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
-     xs, ns, w; thresh=1e-2)
+     xs::AbstractVector{SVector{2,Float64}}, ns::AbstractVector{SVector{2,Float64}}, 
+     w::AbstractVector{Float64}; thresh=1e-2)
 
     # initialise tabulation
     tab = tabulate_hankel(xs, k_min, k_max)
@@ -20,13 +16,12 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
     ks = collect(range(k_min, k_max; length = num_k))
     min_sv = Vector{Float64}(undef, num_k)
 
+    # finding min sv val of each generated bem matrix
     for (t, k) in enumerate(ks)
         A = build_BEM_matrix(k, xs, ns, w, tab)
-        # Smallest singular value (svdvals returns descending)
         svals = svdvals(A)
         min_sv[t] = svals[end]
     end
-
 
     # naive peak picker on downward spikes
     idx = Int[]
