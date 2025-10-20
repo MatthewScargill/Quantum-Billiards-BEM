@@ -4,7 +4,6 @@ using .QuantumBilliards
 
 function plot_weylcomp(spectrum::AbstractVector{<:Real}, geom_data::Tuple{<:Real,<:Real})
     
-
     num_points::Int=1000
 
     @assert !isempty(spectrum) "Spectrum must not be empty."
