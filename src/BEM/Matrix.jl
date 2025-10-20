@@ -1,19 +1,26 @@
 using .QuantumBilliards
-
-function build_BEM_matrix(k::Float64, xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}},
-     w::Vector{Float64}; interior::Bool=true)
+using Base.Threads
+ 
+@inline function build_BEM_matrix(k::Float64,
+                          xs::AbstractVector{SVector{2,Float64}},
+                          ns::AbstractVector{SVector{2,Float64}},
+                          w::AbstractVector{Float64},
+                          H::HankelTable;
+                          interior::Bool = true)
     N = length(xs)
-    A = zeros(ComplexF64, N, N)
+    A = Matrix{ComplexF64}(undef, N, N)
     jump = interior ? -0.5 : 0.5 # interior or exterior jump term
 
-    for i in 1:N
-        A[i,i] = jump                
+    @threads for i in 1:N
         xi = xs[i]
-        for j in 1:N
-            if i == j
-                continue             
+        @inbounds begin
+            for j in 1:i-1
+                A[i,j] = kernel_bem(xi, xs[j], ns[j], k, H) * w[j]
             end
-            A[i,j] += kernel_bem(xi, xs[j], ns[j], k) * w[j] 
+            A[i,i] = jump + 0im
+            for j in i+1:N
+                A[i,j] = kernel_bem(xi, xs[j], ns[j], k, H) * w[j]
+            end
         end
     end
     return A

@@ -1,20 +1,28 @@
 using LinearAlgebra
 using SpecialFunctions
 using .QuantumBilliards
-
-function min_singular_value(k::Float64, xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}}, 
-    w::Vector{Float64})
-
-    A = QuantumBilliards.build_BEM_matrix(k, xs, ns, w; interior=true)
-    s = svdvals(A)
-    return minimum(s)
-end
+using Base.Threads
 
 function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
-     xs::Vector{Vector{Float64}}, ns::Vector{Vector{Float64}}, w::Vector{Float64}; thresh=1e-2)
+     xs::AbstractVector{SVector{2,Float64}}, ns::AbstractVector{SVector{2,Float64}}, 
+     w::AbstractVector{Float64}; thresh=1e-2)
 
+    # initialise tabulation
+    tab = tabulate_hankel(xs, k_min, k_max)
+
+    # scanned k values 
     k_values = collect(range(k_min, k_max, length=num_k))
-    min_sv = [min_singular_value(k, xs, ns, w) for k in k_values]
+
+    ks = collect(range(k_min, k_max; length = num_k))
+    min_sv = Vector{Float64}(undef, num_k)
+
+    # finding min sv val of each generated bem matrix
+    for (t, k) in enumerate(ks)
+        A = build_BEM_matrix(k, xs, ns, w, tab)
+        svals = svdvals(A)
+        min_sv[t] = svals[end]
+    end
+
     # naive peak picker on downward spikes
     idx = Int[]
     for i in 2:length(min_sv)-1

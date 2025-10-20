@@ -1,18 +1,20 @@
+using StaticArrays
+
 # Boundary parameterization for the unit circle 
-function circle_boundary(θ)
+@inline function circle_boundary(θ)
     r = 1 
-    return [r * cos(θ), r * sin(θ)]
+    return @SVector [r * cos(θ), r * sin(θ)]
 end
 
-function circle_derivative(θ)
+@inline function circle_derivative(θ)
     dx = - sin(θ)
     dy = cos(θ)
-    return [dx, dy]
+    return @SVector [dx, dy]
 end
 
-function circle_outward_normal(θ)
+@inline function circle_outward_normal(θ)
     d = circle_derivative(θ)
-    n = [d[2], -d[1]]
+    n = @SVector [d[2], -d[1]]
     return n / norm(n)
 end
 
