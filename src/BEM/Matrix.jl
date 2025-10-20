@@ -11,7 +11,7 @@ using Base.Threads
     A = Matrix{ComplexF64}(undef, N, N)
     jump = interior ? -0.5 : 0.5 # interior or exterior jump term
 
-    @threads :static for i in 1:N
+    @threads for i in 1:N
         xi = xs[i]
         @inbounds begin
             for j in 1:i-1
