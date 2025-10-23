@@ -23,6 +23,18 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
         min_sv[t] = svals[end]
     end
 
+    """
+    # eventually swap out above with optimised min sigular value function min_sigma
+    # min singular value finder with hot trial vector
+    v0 = nothing
+    for (t, k) in enumerate(ks)
+        A = build_BEM_matrix(k, xs, ns, w, tab)
+        sigma, v0 = min_sigma(A; v0=v0)
+        min_sv[t] = sigma
+    end
+    """
+
+
     # naive peak picker on downward spikes
     idx = Int[]
     for i in 2:length(min_sv)-1
