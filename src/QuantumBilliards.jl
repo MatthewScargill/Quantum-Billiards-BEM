@@ -11,6 +11,7 @@ using StatsBase
 const TOL = 1e-14
 
 # Mesh files
+include("BEM/Mesh/BoundaryData.jl")
 include("BEM/Mesh/Cardioid.jl")
 include("BEM/Mesh/Circle.jl")
 include("BEM/Mesh/Rectangle.jl")
@@ -37,7 +38,7 @@ include("Visualisation/WeylComp.jl")
 
 
 export TOL
-export cardioid_info, circle_info, rect_info, square_info, stadium_info
+export BoundaryData, cardioid_info, circle_info, rect_info, square_info, stadium_info
 export kernel_bem, build_BEM_matrix, resonant_modes, min_sigma, tabulate_hankel, HankelTable
 export weyl_convert, weyl_unfold, weyl_count
 export plot_boundary, plot_billiard, plot_weylcomp, plot_unfolded_spacings
