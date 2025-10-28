@@ -60,7 +60,7 @@ Pkg.add(url="https://github.com/MatthewScargill/QuantumBilliards.jl")
 using QuantumBilliards
 
 # Set the number of boundary discretization points
-N = 900  
+N = 700  
 
 # Extract nodes, normals, weights, and billiard geometry data using a _info function
 xs, ns, w, geom_data = QuantumBilliards.cardioid_info(N)
@@ -75,7 +75,7 @@ QuantumBilliards.plot_billiard(xs, ns, w, test_res)
 
 ![example billiard](rsc/img/example_billiard.svg)
 
-(a practical notebook of functions can be found in rsc/)
+(a markdown document showing a more complete example workflow with basic explanations can be found in rsc/)
 
 -----
 Questions, extensions, and research discussions are welcome.
