@@ -9,7 +9,7 @@ using StatsBase
 using KrylovKit
 
 # smallest distance before jump term triggered
-const TOL = 1e-14
+const TOL = 1e-20 # should probably scale with N, wait until H matrices and/or FMM plan sorted
 
 # Mesh files
 include("BEM/Mesh/BoundaryData.jl")
