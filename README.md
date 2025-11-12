@@ -24,8 +24,7 @@ is the 2D free-space Green’s function. This equation is approximated to a matr
 - ✅ Boundary element discretisation of the 2D Helmholtz equation 
 - ✅ Multithreaded BEM matrix assembly
 - ✅ Optimised Kernel function via Hankel function tabulation
-- ✅ Hot-loop Krylov iterative method for fast resonance scanning  
-- ✅ Resonance detection via singular value analysis  
+- ✅ Iterative hot-loop Krylov method for fast resonance scanning via singular value analysis
 - ✅ Visualisation of wavefunctions inside the billiard  
 - ✅ Spectrum unfolding using Weyl’s law  
 - ✅ Spacing distribution and spectral statistics analysis  
