@@ -6,6 +6,7 @@ using StaticArrays
 using Base.Threads
 using Plots
 using StatsBase
+using KrylovKit
 
 # smallest distance before jump term triggered
 const TOL = 1e-14

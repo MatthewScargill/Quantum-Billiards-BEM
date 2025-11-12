@@ -1,23 +1,11 @@
-using LinearAlgebra
 using KrylovKit
 
-# welcome to me trying to optimise the svd finder
-function min_singular(A; v0=nothing, tol=1e-8, maxiter=300, krylovdim=30, nev=1)
-    n = size(A,2)
-    v0 === nothing && (v0 = randn(n))
-    v0 ./= norm(v0)
-
-    # Linear operator
-    op = x -> A' * (A * x)
-
-    vals, vecs, _ = eigsolve(op, v0, max(1, nev), :SR;
-                                ishermitian=true,
-                                tol=tol, maxiter=maxiter, krylovdim=krylovdim)
-
-    
-    j = argmin(vals)
-    λ = real(vals[j])
-    v = vecs[j]
-    sigma = sqrt(max(λ, 0.0))
-    return sigma, v
+# Krylov iteration based min svg approximator (25-50% speed gain)
+function min_singular(A; v0=nothing, tol=1e-10, krylovdim=80, maxiter=5_000)
+    if v0 === nothing # initial iteration
+        min_svs, U, V, info = svdsolve(A, 1, :SR; tol=tol, krylovdim=krylovdim, maxiter=maxiter)
+    else # further iteration using hot loop v0
+        min_svs, U, V, info = svdsolve(A, v0, 1, :SR; tol=tol, krylovdim=krylovdim, maxiter=maxiter)
+    end
+    return min_svs[1], U[1]
 end

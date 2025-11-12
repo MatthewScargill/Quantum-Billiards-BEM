@@ -16,21 +16,24 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
     ks = collect(range(k_min, k_max; length = num_k))
     min_sv = Vector{Float64}(undef, num_k)
 
+    """
+    outdated full svg decomposition
+
     # finding min sv val of each generated bem matrix
     for (t, k) in enumerate(ks)
         A = build_BEM_matrix(k, xs, ns, w, tab)
         svals = svdvals(A)
         min_sv[t] = svals[end]
     end
-
     """
-    v_hot = nothing
+    
+    v0 = nothing
     for (t, k) in enumerate(ks)
         A = build_BEM_matrix(k, xs, ns, w, tab)
-        sigma, v_hot = min_singular(A; v0=v_hot, tol=1e-8, krylovdim=50) 
-        min_sv[t] = sigma
+        theta, v0 = min_singular(A, v0=v0)   # warm start
+        min_sv[t] = theta
     end
-    """
+    
 
     # naive peak picker on downward spikes
     idx = Int[]
@@ -39,5 +42,6 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
             push!(idx, i)
         end
     end
+
     return k_values[idx]
 end

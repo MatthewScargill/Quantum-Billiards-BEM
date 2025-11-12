@@ -22,7 +22,9 @@ is the 2D free-space Green’s function. This equation is approximated to a matr
 ## Features
 
 - ✅ Boundary element discretisation of the 2D Helmholtz equation 
-- ✅ Optimised Kernel and BEM matrix assembly via Hankel function tabulation
+- ✅ Multithreaded BEM matrix assembly
+- ✅ Optimised Kernel function via Hankel function tabulation
+- ✅ Hot-loop Krylov iterative method for fast resonance scanning  
 - ✅ Resonance detection via singular value analysis  
 - ✅ Visualisation of wavefunctions inside the billiard  
 - ✅ Spectrum unfolding using Weyl’s law  
@@ -32,11 +34,13 @@ is the 2D free-space Green’s function. This equation is approximated to a matr
 ## Directory Structure
 - BEM/
     - Mesh/ -- boundary and mesh data construction
-    - Hankel -- Hankel function tabulation
     - Kernel.jl -- kernel function
     - Matrix.jl -- matrix operator constuction
     - Resonances.jl -- resonant mode detection
     - Solver. jl -- boundary data and wavefunction solver
+    - Optimisations/ 
+        - Hankel.jl -- Hankel function tabulation
+        - SingularValues.jl -- Krylov iteration-based min svg finder
 - Spectral/
     - Weyl.jl -- spectrum unfolding and counting function
     - WignerDyson.jl -- level spacing statistics
