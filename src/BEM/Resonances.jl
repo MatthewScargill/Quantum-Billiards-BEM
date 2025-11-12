@@ -26,6 +26,7 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
         min_sv[t] = svals[end]
     end
     #"""
+    
     """
     v0 = nothing
     for (t, k) in enumerate(ks)
