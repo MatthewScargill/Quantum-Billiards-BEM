@@ -33,7 +33,7 @@ function r_bounds(xs::Vector{SVector{2,Float64}})
 end
 
 # build table over [krmin, krmax]
-function make_hankel_table(krmin::Float64, krmax::Float64; m::Int=1_000_000)
+function make_hankel_table(krmin::Float64, krmax::Float64; m::Int=10_000_000)
     @assert krmax > krmin > 0 "kr bounds must be positive and ordered"
     dkr  = (krmax - krmin) / (m - 1)
     vals = Vector{ComplexF64}(undef, m)
@@ -47,7 +47,7 @@ end
 
 # single k method
 function tabulate_hankel(xs::Vector{SVector{2,Float64}}, k::Float64;
-                         m::Int=1_000_000, margin::Float64=1.05)
+                         m::Int=10_000_000, margin::Float64=1.05)
     rmin, rmax = r_bounds(xs)
     krmin = max(1e-12, k*rmin/margin)
     krmax = max(krmin*10, k*rmax*margin)
@@ -56,7 +56,7 @@ end
 
 # k range method
 function tabulate_hankel(xs::Vector{SVector{2,Float64}}, kmin::Float64, kmax::Float64;
-                         m::Int=1_000_000, margin::Float64=1.05)
+                         m::Int=10_000_000, margin::Float64=1.05)
     @assert kmax ≥ kmin > 0 "k-range must be positive and ordered"
     rmin, rmax = r_bounds(xs)
     krmin = max(1e-12, kmin*rmin/margin)
