@@ -2,7 +2,7 @@
 
 Spectrum solver for 2D Helmholtz quantum billiard problems with Dirichlet boundary conditions. Implements a Nyström-based Boundary Element Method (BEM) to construct boundary data, assemble boundary integral operators, and scan wavenumbers to approximate resonant modes. Includes wavefunction visualisation and spectral analysis tools. 
 
-This is a refined version of code originally developed for my master's project (text found in rsc/). It's still a good companion to this repo as the methods are identical, and it provides a comprehensive introduction to the theory involved.
+This is a refined version of code originally developed for my master's project (text found in rsc/docs/). It's still a good companion to this repo as the methods are identical, and it provides a comprehensive introduction to the theory involved.
 
 ## Overview
 Quantum billiards describe particles confined in a 2D region with perfectly reflecting walls. The dynamics of these systems are described by the Helmholtz equation under Dirichlet boundary conditions
@@ -78,7 +78,7 @@ QuantumBilliards.plot_billiard(xs, ns, w, test_res)
 
 ![example billiard](rsc/img/example_billiard.svg)
 
-(a markdown document showing a more complete example workflow with basic explanations can be found in rsc/)
+(a markdown document showing a complete example workflow as well as an optimisation history for the project can be found in rsc/docs/)
 
 -----
 Questions, extensions, and research discussions are welcome.
