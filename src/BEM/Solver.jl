@@ -6,8 +6,9 @@ using .QuantumBilliards
 
     N = length(xs)
     @assert length(ns) == N == length(w) "xs, ns, w must have same length"
+
     A = QuantumBilliards.build_BEM_matrix(k, xs, ns, w, tab; interior=interior)
-    S = svd(A)
+    S = svd(A) # single solve so no need for it to be krylov
     phi = S.V[:, end]
     return phi, A
 end
@@ -17,9 +18,10 @@ end
     N = length(xs)
 
     @assert length(ns) == N == length(w) == length(phi)
-    acc = 0.0 + 0im
+
+    val = 0.0 + 0im
     @inbounds for j in 1:N
-        acc += w[j] * kernel_bem(x, xs[j], ns[j], k, tab) * phi[j]
+        val += w[j] * kernel_bem(x, xs[j], ns[j], k, tab) * phi[j]
     end
-    return acc
+    return val
 end

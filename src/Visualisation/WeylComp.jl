@@ -15,7 +15,7 @@ function plot_weylcomp(spectrum::AbstractVector{<:Real}, geom_data::Tuple{<:Real
     # empirical staircase N(k): count how many levels ≤ k
     N_emp = [weyl_count(ks, k) for k in kgrid]
 
-    # smooth Weyl prediction N̄(k)
+    # smooth Weyl prediction N(k)
     N_weyl = [weyl_convert(k, geom_data) for k in kgrid]
 
     # plot the comparison

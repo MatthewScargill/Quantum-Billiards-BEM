@@ -9,10 +9,9 @@ using StatsBase
 using KrylovKit
 
 # smallest distance before jump term triggered
-const TOL = 1e-24 # should probably scale with N, wait until H matrices and/or FMM plan sorted
+const TOL = 1e-24 # acceptable for the first few hundred eigenmodes, breaks krylov if too big 
 
 # Mesh files
-include("BEM/Mesh/BoundaryData.jl")
 include("BEM/Mesh/Cardioid.jl")
 include("BEM/Mesh/Circle.jl")
 include("BEM/Mesh/Rectangle.jl")

@@ -15,9 +15,11 @@ function weyl_count(spectrum::Vector{Float64}, k::Float64)
 end
 
 function weyl_unfold(spectrum::Vector{Float64}, geom_data::Tuple{<:Real,<:Real})
-    unfolded_spectrum = []
+
+    unfolded_spectrum = Vector{Float64}()
     for res in spectrum
         push!(unfolded_spectrum, weyl_convert(res, geom_data))
     end
+    
     return unfolded_spectrum
 end

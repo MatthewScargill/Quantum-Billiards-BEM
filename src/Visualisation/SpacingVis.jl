@@ -25,14 +25,17 @@ function plot_unfolded_spacings(spectrum::AbstractVector{<:Real}, geom_data::Tup
         label="Data")
 
 
+    # for comparison to ...
     if overlay
 
         xs = range(0, stop = smax, length = 400)
         
+        # possion -> integrable 
         poisson_pdf(s) = exp(-s)
         poisson_vals = poisson_pdf.(xs) .* bin_width
         plot!(p, xs, poisson_vals, label = "Poisson", lw = 2)
 
+        # GOE -> chaotic
         goe_pdf(s) = (π/2) * s * exp(-π * s^2 / 4)
         goe_vals = goe_pdf.(xs) .* bin_width
         plot!(p, xs, goe_vals, label = "GOE", lw = 2)
