@@ -31,10 +31,9 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
         theta, v0 = min_singular(A, v0=v0)   # warm start
         min_sv[t] = theta
     end
-    
 
     # naive peak picker on downward spikes
-    idx = Int[]
+    idx = sizehint!(Int[], length(ks)÷10)
     for i in 2:length(min_sv)-1
         if min_sv[i] < min(min_sv[i-1], min_sv[i+1]) && min_sv[i] < thresh
             push!(idx, i)
