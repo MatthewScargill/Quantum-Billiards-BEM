@@ -14,7 +14,7 @@ using .QuantumBilliards
         proj = dot(rvec, n) / r
         kr   = k*r
         h1   = hankel_eval(H, kr)
-        return (im * k / 4) * h1 * proj
+        return (im * k * 0.25) * h1 * proj
     end
 end
 
@@ -30,6 +30,6 @@ end
         proj = dot(rvec, n) / r
         kr   = k*r
         h1   = hankel_eval(H, kr)
-        return (im * k / 4) * h1 * proj
+        return (im * k * 0.25) * h1 * proj
     end
 end
