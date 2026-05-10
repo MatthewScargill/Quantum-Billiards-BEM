@@ -10,6 +10,8 @@ using KrylovKit
 
 # smallest distance before jump term triggered
 const TOL = 1e-24 # acceptable for the first few hundred eigenmodes, breaks krylov if too big 
+const overpifour = 0.0795774715459
+
 
 # Mesh files
 include("BEM/Mesh/Cardioid.jl")
