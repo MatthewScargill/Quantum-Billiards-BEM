@@ -1,6 +1,6 @@
 function weyl_convert(k::Float64, geom_data::Tuple{<:Real,<:Real})
     A, P = geom_data  # (Area, Perimeter)
-    return (A/(4π))*k^2 - (P/(4π))*k
+    return (A*overpifour)*k^2 - (P*overpifour)*k
 end
 
 function weyl_count(spectrum::Vector{Float64}, k::Float64)

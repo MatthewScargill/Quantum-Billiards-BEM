@@ -9,6 +9,7 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
 
     # initialise tabulation
     tab = tabulate_hankel(xs, k_min, k_max)
+    A = Matrix{ComplexF64}(undef, length(xs), length(xs)) # preallocated matrix to fill
 
     # scanned k values 
     ks = collect(range(k_min, k_max; length = num_k))
@@ -26,14 +27,13 @@ function resonant_modes(k_min::Float64, k_max::Float64, num_k::Int64,
     # svg hot loop using krylov
     v0 = nothing
     for (t, k) in enumerate(ks)
-        A = build_BEM_matrix(k, xs, ns, w, tab)
+        A = build_BEM_matrix(k, xs, ns, w, tab, A)
         theta, v0 = min_singular(A, v0=v0)   # warm start
         min_sv[t] = theta
     end
-    
 
     # naive peak picker on downward spikes
-    idx = Int[]
+    idx = sizehint!(Int[], length(ks)÷10)
     for i in 2:length(min_sv)-1
         if min_sv[i] < min(min_sv[i-1], min_sv[i+1]) && min_sv[i] < thresh
             push!(idx, i)

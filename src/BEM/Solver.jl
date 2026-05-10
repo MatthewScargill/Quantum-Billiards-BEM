@@ -6,8 +6,8 @@ using .QuantumBilliards
 
     N = length(xs)
     @assert length(ns) == N == length(w) "xs, ns, w must have same length"
-
-    A = QuantumBilliards.build_BEM_matrix(k, xs, ns, w, tab; interior=interior)
+    A = Matrix{ComplexF64}(undef, N, N) # preallocated matrix to fill
+    A = QuantumBilliards.build_BEM_matrix(k, xs, ns, w, tab, A; interior=interior)
     S = svd(A) # single solve so no need for it to be krylov
     phi = S.V[:, end]
     return phi, A
