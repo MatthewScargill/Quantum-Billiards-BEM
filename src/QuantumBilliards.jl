@@ -46,10 +46,3 @@ export weyl_convert, weyl_unfold, weyl_count
 export plot_boundary, plot_billiard, plot_weylcomp, plot_unfolded_spacings
 
 end
-
-
-# change matrix construction to reuse previous matrix allocation, how does this affect multithreading?
-# preallocate array of resonances using weyl prediction 
-# maybe precomupute hankel values and store them as a constant lookup table 
-# cull some / signs if can simply use *
-# use symmetry to fill lower half of matrix if faster?
