@@ -14,7 +14,8 @@ using Base.Threads
 
     @threads for i in 1:N
         xi = xs[i]
-        @inbounds begin
+        @inbounds begin # if all the matrices are symmetrical could cut down on allocations 
+            # but need proper index into normals vector, could possibly make it work?
             for j in 1:i-1
                 A[i,j] = kernel_bem(xi, xs[j], ns[j], k, H) * w[j]
             end
